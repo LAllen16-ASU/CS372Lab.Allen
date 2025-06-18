@@ -8,9 +8,7 @@
 #include <chrono>
 
 
-void vecTest(Vector<int>&);
 void addElements(Vector<int>&, int&);
-void ArrTest();
 
 int main()
 {
