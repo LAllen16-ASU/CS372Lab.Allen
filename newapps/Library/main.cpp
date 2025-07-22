@@ -1,52 +1,76 @@
 #include <iostream>
-#include "Vector.hpp"
-#include "VectorPoly.hpp"
-#include "VectorPoly2.hpp"
-#include "Array.hpp"
-#include "Bag.hpp"
-#include "ReceiptBag.hpp"
+#include "Assignment 08/HashTable.hpp"
+#include <list>
+using std::list;
+using std::string;
+
+void popTable(HashTable<int>& arr, vector<int> data);
 
 int main()
 {
-	ReceiptBag<int> rBag = ReceiptBag<int>();
-	rBag.insert(5);
-	rBag.insert(9);
-	rBag.insert(15);
-	std::cout << std::endl;
-	rBag.printReceipts();
-	rBag.printContents();
-	rBag.remove(1);
-	rBag.printReceipts();
-	rBag.printContents();
-	/*
-	Array<int> myArray = Array<int>(5);
-	std::cout << "Size: " << myArray.size() << std::endl;
-	myArray.append(1);
-	myArray.append(5);
-	myArray.append(99);
-	myArray.append(23);
-	myArray.append(42);
-	//myArray.append(100);
-	for (int i = 0; i < myArray.size(); i++)
-	{
-		std::cout << myArray[i] << std::endl;
-	}
+	vector<int> data = {5, 50, 99, 21, 20, 25, 35};
+	HashTable<int> arr;
+	std::cout << "Size of Data: " << data.size() << std::endl;
+	popTable(arr, data);
+	arr.printTable();
 
-	Vector<int> vec = Vector<int>();
-	vec.push_back(5);
-	std::cout << vec.capacity() << std::endl;
-	std::cout << vec[0] << std::endl;
-
-	VectorPoly<int> vec2 = VectorPoly<int>();
-	vec2.push_back(10);
-	vec2.push_back(2);
-	vec2.push_back(3);
-	std::cout << vec2.capacity() << std::endl;
-	std::cout << vec2[0] << std::endl;
-
-	VectorPoly2<int> vec3 = VectorPoly2<int>(128);
-	vec3.push_back(9);
-	std::cout << vec3.capacity() << std::endl;
-	std::cout << vec3[0] << std::endl;
-	*/
+	return 0;
 }
+
+void popTable(HashTable<int>& arr, vector<int> data)
+{
+	for (int i = 0; i < data.size(); i++)
+	{
+		arr.insert(data[i]);
+	}
+}
+
+/*
+int main()
+{
+	vector<string> names = { "Larry", "John", "Kevin", "Alex", "Bob" };
+	vector<int> path = { 0, 1, 2, 3, 4, 0 }; // Example invalid cycle with repeated node
+
+	Graph<string> g(names, false);
+	g.addEdge(0, 1); // Larry - John
+	g.addEdge(1, 2); // John - Alex
+	g.addEdge(2, 3); // Alex - Kevin
+	g.addEdge(3, 4); // Kevin - John
+	g.addEdge(4, 0); // Larry - Bob
+
+	g.printAdjacencyList();
+	g.printAdjacencyMatrix();
+
+	std::cout << "\nBreadth FS from Kevin:\n";
+	g.breadthFS("Kevin");
+
+	std::cout << "\n\nChecking cycle: ";
+	for (int index : path)
+		std::cout << names[index] << " ";
+	std::cout << "\n";
+
+	bool result = g.isCyclicalPath(path);
+	std::cout << "\nCycle valid? " << (result ? "Yes" : "No") << std::endl;
+
+	return 0;
+}
+
+int main()
+{
+	vector<string> names = {"Larry", "John", "Kevin", "Alex", "Bob"};
+	vector<int> path = { 0, 1, 2, 3, 4, 0};
+	Graph<string> g(names, true);
+	g.printNodes();
+	g.addEdge(0, 1);
+	g.addEdge(1, 2);
+	g.addEdge(2, 3);
+	g.addEdge(3, 4);
+	g.addEdge(4, 1);
+	g.printAdjacencyList();
+	g.printAdjacencyMatrix();
+	std::cout << std::endl << std::endl;
+	g.breadthFS("Kevin");
+	bool result = g.isCyclicalPath(path);
+	return 0;
+}
+*/
